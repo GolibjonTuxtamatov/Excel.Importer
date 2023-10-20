@@ -29,6 +29,10 @@ namespace Excel.Importer
             };
 
             services.AddControllers();
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
 
             services.AddSwaggerGen(options =>
