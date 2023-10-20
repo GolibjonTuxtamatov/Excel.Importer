@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Identity.Client.Extensions.Msal;
 using Microsoft.OpenApi.Models;
+using Excel.Importer.Services.Foundations.Applicants;
 
 namespace Excel.Importer
 {
@@ -37,14 +38,8 @@ namespace Excel.Importer
             services.AddControllers();
 
             services.AddDbContext<StorageBroker>();
-
-
-            services.AddTransient<IStorageBroker, StorageBroker>();
-
-            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
-            services.AddTransient<ISpreadsheetProccessingService, SpreadsheetProccessingService>();
-
-            services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
+            AddBrokers(services);
+            AddServices(services);
 
 
             services.AddSwaggerGen(options =>
@@ -53,6 +48,19 @@ namespace Excel.Importer
                     name: "v1",
                     info: apiInfo);
             });
+        }
+
+        private static void AddBrokers(IServiceCollection services)
+        {
+            services.AddTransient<IStorageBroker, StorageBroker>();
+            services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
+        }
+
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
+            services.AddTransient<IApplicantService, ApplicantService>();
+            services.AddTransient<ISpreadsheetProccessingService, SpreadsheetProccessingService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment environment)
