@@ -3,6 +3,7 @@
 // Powering True Leadership
 //===========================
 
+using System.Linq;
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Groups;
 using Microsoft.EntityFrameworkCore;
@@ -15,5 +16,8 @@ namespace Excel.Importer.Brokers.Storages
 
         public ValueTask<Group> InsertGroupAsync(Group group) =>
             InsertAsync(group);
+
+        public IQueryable<Group> SelectAllGroup() =>
+            SelectAll<Group>();
     }
 }

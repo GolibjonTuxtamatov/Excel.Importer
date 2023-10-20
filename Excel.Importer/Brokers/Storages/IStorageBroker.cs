@@ -3,6 +3,7 @@
 // Powering True Leadership
 //===========================
 
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Excel.Importer.Brokers.Storages
@@ -10,5 +11,7 @@ namespace Excel.Importer.Brokers.Storages
     public partial interface IStorageBroker
     {
         ValueTask<T> InsertAsync<T>(T @object);
+
+        IQueryable<T> SelectAll<T>() where T : class;
     }
 }
