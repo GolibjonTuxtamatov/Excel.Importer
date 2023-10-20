@@ -4,6 +4,7 @@
 //===========================
 
 using Excel.Importer.Brokers.Spreadsheets;
+using Excel.Importer.Services.Foundations.Spreadsheets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,9 @@ namespace Excel.Importer
             };
 
             services.AddControllers();
+
+            services.AddTransient<ISpreeadsheetService, SpreeadsheetService>();
+
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
 
             services.AddSwaggerGen(options =>
