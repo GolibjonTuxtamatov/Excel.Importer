@@ -31,8 +31,6 @@ namespace Excel.Importer
 
             services.AddControllers();
 
-            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
-
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
 
             services.AddSwaggerGen(options =>
