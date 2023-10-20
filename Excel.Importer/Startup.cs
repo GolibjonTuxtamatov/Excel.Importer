@@ -4,6 +4,7 @@
 //===========================
 
 using Excel.Importer.Brokers.Spreadsheets;
+using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Services.Foundations.Spreadsheets;
 using Excel.Importer.Services.Proccessings.Spreadsheets;
 using Microsoft.AspNetCore.Builder;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Identity.Client.Extensions.Msal;
 using Microsoft.OpenApi.Models;
 
 namespace Excel.Importer
@@ -31,6 +33,7 @@ namespace Excel.Importer
             };
 
             services.AddControllers();
+            services.AddDbContext<StorageBroker>();
 
             services.AddTransient<ISpreadsheetService, SpreadsheetService>();
             services.AddTransient<ISpreadsheetProccessingService, SpreadsheetProccessingService>();
