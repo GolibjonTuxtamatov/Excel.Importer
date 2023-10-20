@@ -31,7 +31,7 @@ namespace Excel.Importer
 
             services.AddControllers();
 
-            services.AddTransient<ISpreeadsheetService, SpreeadsheetService>();
+            services.AddTransient<ISpreadsheetService, SpreadsheetService>();
 
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
 

@@ -10,7 +10,7 @@ using Excel.Importer.Models.Foundations.ExternalApplicants;
 
 namespace Excel.Importer.Services.Foundations.Spreadsheets
 {
-    public interface ISpreeadsheetService
+    public interface ISpreadsheetService
     {
         ValueTask<List<ExternalApplicant>> ImportExternalApplicantAsync(MemoryStream spreadsheet);
     }

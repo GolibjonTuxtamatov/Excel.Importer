@@ -11,11 +11,11 @@ using Excel.Importer.Models.Foundations.ExternalApplicants;
 
 namespace Excel.Importer.Services.Foundations.Spreadsheets
 {
-    public class SpreeadsheetService : ISpreeadsheetService
+    public class SpreadsheetService : ISpreadsheetService
     {
         private readonly ISpreadsheetBroker spreadsheetBroker;
 
-        public SpreeadsheetService(ISpreadsheetBroker spreadsheetBroker)
+        public SpreadsheetService(ISpreadsheetBroker spreadsheetBroker)
         {
             this.spreadsheetBroker = spreadsheetBroker;
         }
