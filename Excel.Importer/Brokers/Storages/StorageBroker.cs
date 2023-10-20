@@ -27,14 +27,15 @@ namespace Excel.Importer.Brokers.Storages
         public StorageBroker(IConfiguration configuration)
         {
             this.configuration = configuration;
-            this.Database.EnsureCreated();
+            this.Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = configuration.GetConnectionString(name: "DefaultConnection");
-            optionsBuilder.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            optionsBuilder.UseSqlite( connectionString);
+            optionsBuilder.UseSqlServer(connectionString);
         }
+
+        public override void Dispose() { }
     }
 }
