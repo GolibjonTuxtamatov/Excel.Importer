@@ -3,9 +3,11 @@
 // Powering True Leadership
 //===========================
 
+using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Brokers.Spreadsheets;
 using Excel.Importer.Services.Foundations.Spreadsheets;
 using Excel.Importer.Services.Proccessings.Spreadsheets;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -31,11 +33,12 @@ namespace Excel.Importer
             };
 
             services.AddControllers();
-
+            services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ISpreadsheetService, SpreadsheetService>();
             services.AddTransient<ISpreadsheetProccessingService, SpreadsheetProccessingService>();
 
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
+
 
             services.AddSwaggerGen(options =>
             {
