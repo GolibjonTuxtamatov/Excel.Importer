@@ -18,6 +18,7 @@ using Microsoft.Identity.Client.Extensions.Msal;
 using Microsoft.OpenApi.Models;
 using Excel.Importer.Services.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Groups;
+using Excel.Importer.Services.Proccessings.Groups;
 
 namespace Excel.Importer
 {
@@ -62,6 +63,7 @@ namespace Excel.Importer
             services.AddTransient<ISpreadsheetService, SpreadsheetService>();
             services.AddTransient<IApplicantService, ApplicantService>();
             services.AddTransient<IGroupService, GroupService>();
+            services.AddTransient<IGroupProccessingService, GroupProccessingService>();
             services.AddTransient<ISpreadsheetProccessingService, SpreadsheetProccessingService>();
         }
 
