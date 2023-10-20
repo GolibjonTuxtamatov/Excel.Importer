@@ -10,6 +10,6 @@ namespace Excel.Importer.Brokers.Storages
 {
     public partial interface IStorageBroker
     {
-        ValueTask<Applicant> InsertApplicantAsyncs(Applicant applicant);
+        ValueTask<Applicant> InsertApplicantAsync(Applicant applicant);
     }
 }

@@ -3,6 +3,7 @@
 // Powering True Leadership
 //===========================
 
+using Excel.Importer.Brokers.Storages;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +29,8 @@ namespace Excel.Importer
             };
 
             services.AddControllers();
+            services.AddTransient<IStorageBroker, StorageBroker>();
+
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc(

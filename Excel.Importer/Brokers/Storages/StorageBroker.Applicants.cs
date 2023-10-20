@@ -14,9 +14,6 @@ namespace Excel.Importer.Brokers.Storages
         public DbSet<Applicant> Applicants { get; set; }
 
         public async ValueTask<Applicant> InsertApplicantAsync(Applicant applicant) =>
-            await InsertAsync(applicant);
-
-
-
+            await InsertAsync(applicant)
     }
 }
