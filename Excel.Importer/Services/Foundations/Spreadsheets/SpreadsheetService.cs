@@ -9,9 +9,15 @@ namespace Excel.Importer.Services.Foundations.Spreadsheets
     public class SpreadsheetService : ISpreadsheetService
     {
         private readonly ISpreadsheetBroker spreadsheetBroker;
-        public ValueTask<List<ExternalApplicant>> ImportExternalApplicantAsync(MemoryStream spreasheet)
+
+        public SpreadsheetService(ISpreadsheetBroker spreadsheetBroker)
         {
-            return this.spreadsheetBroker.ReadSpreadsheetAsync(spreasheet);
+            this.spreadsheetBroker = spreadsheetBroker;
+        }
+
+        public async ValueTask<List<ExternalApplicant>> ImportExternalApplicantAsync(MemoryStream spreasheet)
+        {
+            return await this.spreadsheetBroker.ReadSpreadsheetAsync(spreasheet);
         }
     }
 }
