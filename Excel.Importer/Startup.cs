@@ -20,7 +20,11 @@ using Excel.Importer.Services.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Groups;
 using Excel.Importer.Services.Proccessings.Groups;
 using Excel.Importer.Services.Proccessings.Applicants;
+
+using Excel.Importer.Services.Orchestrations.Applicants;
+=======
 using Excel.Importer.Services.Orchestrations.Groups;
+
 
 namespace Excel.Importer
 {
@@ -64,6 +68,7 @@ namespace Excel.Importer
         {
             services.AddTransient<IApplicantService, ApplicantService>();
             services.AddTransient<IApplicantProccessingService, ApplicantProccessingService>();
+            services.AddTransient<IApplicantOrchestrationService, ApplicantOrchestrationService>();
             services.AddTransient<IGroupService, GroupService>();
             services.AddTransient<IGroupProccessingService, GroupProccessingService>();
             services.AddTransient<IGroupOrchestrationService, GroupOrchestrationService>();
