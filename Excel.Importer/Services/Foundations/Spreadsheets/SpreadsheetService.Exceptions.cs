@@ -3,6 +3,7 @@
 // Powering True Leadership
 //===========================
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace Excel.Importer.Services.Foundations.Spreadsheets
                     new InvalidExcelFileException(invalidDataException);
 
                 throw CreateAndLogValidationException(invalidExcelFileException);
+            }
+            catch (NullReferenceException nullReferenceException)
+            {
+                var nullExcelFileException =
+                    new NullExcelFileException(nullReferenceException);
+
+                throw CreateAndLogValidationException(nullExcelFileException);
             }
         }
 
