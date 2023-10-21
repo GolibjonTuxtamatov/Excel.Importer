@@ -8,7 +8,7 @@ using Excel.Importer.Services.Foundations.Spreadsheets.Exceptions;
 
 namespace Excel.Importer.Services.Foundations.Spreadsheets
 {
-    public class SpreadsheetService : ISpreadsheetService
+    public partial class SpreadsheetService : ISpreadsheetService
     {
         private readonly ISpreadsheetBroker spreadsheetBroker;
         private readonly ILoggingBroker loggingBroker;
@@ -19,24 +19,11 @@ namespace Excel.Importer.Services.Foundations.Spreadsheets
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<List<ExternalApplicant>> ImportExternalApplicantAsync(MemoryStream spreasheet)
-        {
-            try
+        public ValueTask<List<ExternalApplicant>> ImportExternalApplicantAsync(MemoryStream spreasheet) =>
+            TryCatch(async () =>
             {
                 return await this.spreadsheetBroker.ReadSpreadsheetAsync(spreasheet);
-            }
-            catch (InvalidDataException invalidDataException)
-            {
-                var invalidExcelFileException =
-                    new InvalidExcelFileException(invalidDataException);
-
-                var excelFileValidationException =
-                    new ExcelFileValidationException(invalidExcelFileException);
-
-                this.loggingBroker.LogError(excelFileValidationException);
-
-                throw excelFileValidationException;
-            }
-        }
+            });
+        
     }
 }
