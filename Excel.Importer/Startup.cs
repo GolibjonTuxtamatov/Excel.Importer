@@ -25,7 +25,7 @@ using Excel.Importer.Services.Orchestrations.Spreadsheets;
 using Excel.Importer.Services.Orchestrations.Applicants;
 
 using Excel.Importer.Services.Orchestrations.Groups;
-
+using Excel.Importer.Brokers.Loggings;
 
 namespace Excel.Importer
 {
@@ -63,6 +63,7 @@ namespace Excel.Importer
         {
             services.AddTransient<IStorageBroker, StorageBroker>();
             services.AddTransient<ISpreadsheetBroker, SpreadsheetBroker>();
+            services.AddTransient<ILoggingBroker, LoggingBroker>();
         }
 
         private static void AddServices(IServiceCollection services)
