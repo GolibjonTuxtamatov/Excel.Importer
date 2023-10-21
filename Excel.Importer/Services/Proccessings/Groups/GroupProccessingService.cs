@@ -25,6 +25,11 @@ namespace Excel.Importer.Services.Proccessings.Groups
             return this.groupService.AddGroupAsync(group);
         }
 
+        public IQueryable<Group> RetrieveAllGroups()
+        {
+            return this.groupService.RetrieveAllGroups();
+        }
+
         public async ValueTask<Guid> EnsureExistGroupAsync(string groupName)
         {
             IQueryable<Group> groups = RetrieveAllGroups();
@@ -43,15 +48,11 @@ namespace Excel.Importer.Services.Proccessings.Groups
                     Id = Guid.NewGuid(),
                     GroupName = groupName
                 };
+                 await groupService.AddGroupAsync(group);
 
                 return group.Id;
             }
 
-        }
-
-        public IQueryable<Group> RetrieveAllGroups()
-        {
-            return this.groupService.RetrieveAllGroups();
         }
 
         private bool EnsureExistGroupName(string groupName)
