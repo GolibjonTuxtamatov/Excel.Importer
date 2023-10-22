@@ -6,8 +6,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EFxceptions;
-using Excel.Importer.Models.Foundations.Applicants;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 

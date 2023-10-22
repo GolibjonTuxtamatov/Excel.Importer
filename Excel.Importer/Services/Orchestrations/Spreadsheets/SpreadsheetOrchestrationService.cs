@@ -41,7 +41,7 @@ namespace Excel.Importer.Services.Orchestrations.Spreadsheets
 
             foreach (ExternalApplicant external in importApplicants)
             {
-                Guid groupGuid =await this.groupProccessingService.EnsureExistGroupAsync(external.GroupName);
+                Guid groupGuid = await this.groupProccessingService.EnsureExistGroupAsync(external.GroupName);
 
                 Applicant applicant = MapToInternalApplicant(external, groupGuid);
 
@@ -49,7 +49,7 @@ namespace Excel.Importer.Services.Orchestrations.Spreadsheets
                     await this.applicantProccessingService.AddApplicantAsync(applicant));
             }
 
-                return persistedApplicants;
+            return persistedApplicants;
         }
 
         private Applicant MapToInternalApplicant(ExternalApplicant external, Guid groupGuid)

@@ -3,9 +3,9 @@
 // Powering True Leadership
 //===========================
 
+using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Applicants;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace Excel.Importer.Brokers.Storages
 {

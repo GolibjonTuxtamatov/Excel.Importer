@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Proccessings.Spreadsheets.Exceptions
     public class ExcelFileProccessingValidationException : Xeption
     {
         public ExcelFileProccessingValidationException(Xeption innerException)
-            :base("Excel proccessing validation error occured, fix the error and try again",
+            : base("Excel proccessing validation error occured, fix the error and try again",
                  innerException)
         { }
     }

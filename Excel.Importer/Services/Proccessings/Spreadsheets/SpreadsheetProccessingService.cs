@@ -9,9 +9,6 @@ using System.Threading.Tasks;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Models.Foundations.ExternalApplicants;
 using Excel.Importer.Services.Foundations.Spreadsheets;
-using Excel.Importer.Services.Foundations.Spreadsheets.Exceptions;
-using Excel.Importer.Services.Proccessings.Spreadsheets.Exceptions;
-using Xeptions;
 
 namespace Excel.Importer.Services.Proccessings.Spreadsheets
 {
@@ -20,7 +17,7 @@ namespace Excel.Importer.Services.Proccessings.Spreadsheets
         private readonly ISpreadsheetService spreadsheetService;
         private readonly ILoggingBroker loggingBroker;
 
-        public SpreadsheetProccessingService(ISpreadsheetService spreadsheetService,ILoggingBroker loggingBroker)
+        public SpreadsheetProccessingService(ISpreadsheetService spreadsheetService, ILoggingBroker loggingBroker)
         {
             this.spreadsheetService = spreadsheetService;
             this.loggingBroker = loggingBroker;
