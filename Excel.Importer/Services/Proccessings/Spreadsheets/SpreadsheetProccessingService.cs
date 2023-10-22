@@ -15,7 +15,7 @@ using Xeptions;
 
 namespace Excel.Importer.Services.Proccessings.Spreadsheets
 {
-    public class SpreadsheetProccessingService : ISpreadsheetProccessingService
+    public partial class SpreadsheetProccessingService : ISpreadsheetProccessingService
     {
         private readonly ISpreadsheetService spreadsheetService;
         private readonly ILoggingBroker loggingBroker;
@@ -26,26 +26,10 @@ namespace Excel.Importer.Services.Proccessings.Spreadsheets
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<List<ExternalApplicant>> GetExternalApplicantsAsync(MemoryStream spreadsheet)
+        public ValueTask<List<ExternalApplicant>> GetExternalApplicantsAsync(MemoryStream spreadsheet) =>
+        TryCatch(async () =>
         {
-            try
-            {
-                return await this.spreadsheetService.ImportExternalApplicantAsync(spreadsheet);
-            }
-            catch (ExcelFileValidationException excelFileValidationException)
-            {
-                throw CreateAndLogProccessingValidationException(excelFileValidationException);
-            }
-        }
-
-        private ExcelFileProccessingValidationException CreateAndLogProccessingValidationException(Xeption exception)
-        {
-            var excelFileProccessingValidationException =
-                new ExcelFileProccessingValidationException(exception.InnerException as Xeption);
-
-            this.loggingBroker.LogError(excelFileProccessingValidationException);
-
-            return excelFileProccessingValidationException;
-        }
+            return await this.spreadsheetService.ImportExternalApplicantAsync(spreadsheet);
+        });
     }
 }
