@@ -12,7 +12,7 @@ using Excel.Importer.Services.Foundations.Groups.Exceptions;
 
 namespace Excel.Importer.Services.Foundations.Groups
 {
-    public class GroupService : IGroupService
+    public partial class GroupService : IGroupService
     {
         private readonly IStorageBroker storageBroker;
         private readonly ILoggingBroker loggingBroker;
@@ -23,25 +23,13 @@ namespace Excel.Importer.Services.Foundations.Groups
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<Group> AddGroupAsync(Group group)
-        {
-            try
+        public ValueTask<Group> AddGroupAsync(Group group) =>
+            TryCatch(async () =>
             {
-                if (group is null)
-                    throw new NullGroupException();
+                ValidateGroupNotNull(group);
 
                 return await this.storageBroker.InsertGroupAsync(group);
-            }
-            catch (NullGroupException nullGroupException)
-            {
-                var groupValidationException =
-                    new GroupValidationException(nullGroupException);
-
-                this.loggingBroker.LogError(groupValidationException);
-
-                throw groupValidationException;
-            }
-        }
+            });
 
         public IQueryable<Group> RetrieveAllGroups()
         {
