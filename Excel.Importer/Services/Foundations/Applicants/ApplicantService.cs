@@ -23,7 +23,7 @@ namespace Excel.Importer.Services.Foundations.Applicants
 
         public async ValueTask<Applicant> AddApplicantAsync(Applicant applicant)
         {
-            throw new System.NotImplementedException();
+            return await this.storageBroker.InsertApplicantAsync(applicant);
         }
     }
 }
