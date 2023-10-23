@@ -6,6 +6,7 @@
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
+using Microsoft.Data.SqlClient;
 using Xeptions;
 
 namespace Excel.Importer.Services.Foundations.Groups
@@ -28,6 +29,13 @@ namespace Excel.Importer.Services.Foundations.Groups
             {
                 throw CreateAndLogValidationException(invalidGroupException);
             }
+            catch (SqlException sqlException)
+            {
+                var faildStorageGroupException =
+                    new FaildStorageGroupException(sqlException);
+
+                throw CreatAndLogCriticalDependencyException(faildStorageGroupException);
+            }
         }
 
         private GroupValidationException CreateAndLogValidationException(Xeption exception)
@@ -38,6 +46,16 @@ namespace Excel.Importer.Services.Foundations.Groups
             this.loggingBroker.LogError(groupValidationException);
 
             return groupValidationException;
+        }
+
+        private GroupDependencyException CreatAndLogCriticalDependencyException(Xeption exception)
+        {
+            GroupDependencyException groupDependencyException =
+                new GroupDependencyException(exception);
+
+            this.loggingBroker.LogCritical(groupDependencyException);
+
+            return groupDependencyException;
         }
     }
 }

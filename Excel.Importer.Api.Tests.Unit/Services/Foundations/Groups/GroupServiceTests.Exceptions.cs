@@ -25,6 +25,10 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             var expectedGroupDependencyException =
                 new GroupDependencyException(faildStorageGroupException);
 
+            this.storageBrokerMock.Setup(broker =>
+                broker.InsertGroupAsync(someGroup))
+                .ThrowsAsync(sqlException);
+
             //when
             ValueTask<Group> actualGroupTask =
                 this.groupService.AddGroupAsync(someGroup);
