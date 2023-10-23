@@ -24,7 +24,7 @@ namespace Excel.Importer.Services.Foundations.Groups
 
         public ValueTask<Group> AddGroupAsync(Group group)
         {
-            throw new System.NotImplementedException();
+            return this.storageBroker.InsertGroupAsync(group);
         }
 
         public IQueryable<Group> RetrieveAllGroups()
