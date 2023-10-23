@@ -64,7 +64,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
 
             invalidGroupException.AddData(
                 key: nameof(Group.GroupName),
-                values: "Tex is required");
+                values: "Text is required");
 
             var expectedGroupValidationException =
                 new GroupValidationException(invalidGroupException);
@@ -73,7 +73,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             ValueTask<Group> actualGroupTask = this.groupService.AddGroupAsync(invalidGroup);
 
             //then
-            await Assert.ThrowsAsync<InvalidOperationException>(() =>
+            await Assert.ThrowsAsync<GroupValidationException>(() =>
                 actualGroupTask.AsTask());
 
             this.loggingBrokerMock.Verify(broker =>
