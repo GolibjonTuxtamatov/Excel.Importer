@@ -15,7 +15,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
     public partial class GroupServiceTests
     {
         [Fact]
-        public async Task ShouldThrowValidationExceptionIfGroupIsNulOnAddAndLogItAsync()
+        public async Task ShouldThrowValidationExceptionOnAddIfGroupIsNullAndLogItAsync()
         {
             //given
             Group nullGroup = null;
