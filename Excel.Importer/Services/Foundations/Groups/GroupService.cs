@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Groups;
+using Excel.Importer.Services.Foundations.Groups.Exceptions;
 
 namespace Excel.Importer.Services.Foundations.Groups
 {
@@ -22,9 +23,24 @@ namespace Excel.Importer.Services.Foundations.Groups
             this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<Group> AddGroupAsync(Group group)
+        public async ValueTask<Group> AddGroupAsync(Group group)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                if (group is null)
+                    throw new NullGroupException();
+
+                return await this.storageBroker.InsertGroupAsync(group);
+            }
+            catch (NullGroupException nullGroupException)
+            {
+                var groupValidationException =
+                    new GroupValidationException(nullGroupException);
+
+                this.loggingBroker.LogError(groupValidationException);
+
+                throw groupValidationException;
+            }
         }
 
         public IQueryable<Group> RetrieveAllGroups()
