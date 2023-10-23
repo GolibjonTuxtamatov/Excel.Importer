@@ -48,7 +48,7 @@ namespace Excel.Importer.Services.Proccessings.Groups
                     Id = Guid.NewGuid(),
                     GroupName = groupName
                 };
-                 await groupService.AddGroupAsync(group);
+                await groupService.AddGroupAsync(group);
 
                 return group.Id;
             }

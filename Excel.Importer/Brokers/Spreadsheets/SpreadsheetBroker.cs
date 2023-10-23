@@ -13,7 +13,7 @@ namespace Excel.Importer.Brokers.Spreadsheets
 {
     public class SpreadsheetBroker : ISpreadsheetBroker
     {
-        
+
         public async ValueTask<List<ExternalApplicant>> ReadSpreadsheetAsync(MemoryStream spreadsheet)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
@@ -22,18 +22,18 @@ namespace Excel.Importer.Brokers.Spreadsheets
             var externalApplicants = new List<ExternalApplicant>();
 
             ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[0];
-            
-            for(int row = 2; row < worksheet.Dimension.Rows; row++)
+
+            for (int row = 2; row < worksheet.Dimension.Rows; row++)
             {
                 externalApplicants.Add(
                     new ExternalApplicant
                     {
                         FirstName = worksheet.Cells[row, 1].Value.ToString(),
-                        LastName = worksheet.Cells[row ,2].Value.ToString(),
-                        Email = worksheet.Cells[row ,3].Value.ToString(),
-                        PhoneNumber = worksheet.Cells[row ,4].Value.ToString(),
-                        GroupName = worksheet.Cells[row ,5].Value.ToString()
-                    });                                   
+                        LastName = worksheet.Cells[row, 2].Value.ToString(),
+                        Email = worksheet.Cells[row, 3].Value.ToString(),
+                        PhoneNumber = worksheet.Cells[row, 4].Value.ToString(),
+                        GroupName = worksheet.Cells[row, 5].Value.ToString()
+                    });
             }
 
             return externalApplicants;

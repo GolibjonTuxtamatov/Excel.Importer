@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Foundations.Spreadsheets.Exceptions
     public class ExcelFileValidationException : Xeption
     {
         public ExcelFileValidationException(Xeption innerException)
-            :base("Excel file validation error occured, fix the error and try again",
+            : base("Excel file validation error occured, fix the error and try again",
                  innerException)
         { }
     }

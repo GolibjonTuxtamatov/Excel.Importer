@@ -11,7 +11,7 @@ namespace Excel.Importer.Services.Foundations.Spreadsheets.Exceptions
     public class NullExcelFileException : Xeption
     {
         public NullExcelFileException(Exception innerException)
-            :base("Excel file some properties are null",
+            : base("Excel file some properties are null",
                  innerException)
         { }
     }
