@@ -43,5 +43,49 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             this.loggingBrokerMock.VerifyNoOtherCalls();
             this.storageBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public async Task ShouldThrowValidationExceptionOnAddIfGroupIsInvalidAndLogItAsync(string text)
+        {
+            //given
+            var invalidGroup = new Group
+            {
+                GroupName = text
+            };
+
+            var invalidGroupException = new InvalidGroupException();
+
+            invalidGroupException.AddData(
+                key: nameof(Group.Id),
+                values: "Id is required");
+
+            invalidGroupException.AddData(
+                key: nameof(Group.GroupName),
+                values: "Tex is required");
+
+            var expectedGroupValidationException =
+                new GroupValidationException(invalidGroupException);
+
+            //when
+            ValueTask<Group> actualGroupTask = this.groupService.AddGroupAsync(invalidGroup);
+
+            //then
+            await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                actualGroupTask.AsTask());
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedGroupValidationException))),
+                Times.Once());
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertGroupAsync(It.IsAny<Group>()),
+                Times.Never());
+
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+            this.storageBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }
