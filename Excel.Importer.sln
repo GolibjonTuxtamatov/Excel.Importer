@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excel.Importer", "Excel.Imp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excel.Importer.Api.Infrastructure.Build", "Excel.Importer.Api.Infrastructure.Build\Excel.Importer.Api.Infrastructure.Build.csproj", "{47320A67-9352-4697-963D-BD5ED1180CA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excel.Importer.Api.Tests.Unit", "Excel.Importer.Api.Tests.Unit\Excel.Importer.Api.Tests.Unit.csproj", "{38F03C51-41CB-4336-8FE1-340E3A4781C7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{47320A67-9352-4697-963D-BD5ED1180CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47320A67-9352-4697-963D-BD5ED1180CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47320A67-9352-4697-963D-BD5ED1180CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F03C51-41CB-4336-8FE1-340E3A4781C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F03C51-41CB-4336-8FE1-340E3A4781C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F03C51-41CB-4336-8FE1-340E3A4781C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F03C51-41CB-4336-8FE1-340E3A4781C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
