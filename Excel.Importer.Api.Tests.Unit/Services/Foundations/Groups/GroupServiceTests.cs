@@ -5,11 +5,13 @@
 
 
 using System.Linq.Expressions;
+using System.Runtime.Serialization;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
+using Microsoft.Data.SqlClient;
 using Moq;
 using Tynamix.ObjectFiller;
 using Xeptions;
@@ -31,6 +33,10 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
                 this.storageBrokerMock.Object,
                 this.loggingBrokerMock.Object);
         }
+
+        private SqlException GetSqlError()=>
+            (SqlException)FormatterServices
+            .GetSafeUninitializedObject(typeof(SqlException));
 
         private Expression<Func<Exception, bool>> SameExceptionAs(Xeption exception) =>
             actualException => actualException.SameExceptionAs(exception);
