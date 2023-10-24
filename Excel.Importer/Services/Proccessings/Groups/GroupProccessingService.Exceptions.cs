@@ -34,6 +34,10 @@ namespace Excel.Importer.Services.Proccessings.Groups
             {
                 throw CreateAndLogProccessingDependencyValidationException(groupDependencyValidationException);
             }
+            catch (GroupServiceException  groupServiceException)
+            {
+                throw CreateAndLogProccessingServiceException(groupServiceException);
+            }
         }
 
         private GroupProccessingValidationException CreateAndLogProccessingValidationException(Xeption exception)
@@ -63,7 +67,18 @@ namespace Excel.Importer.Services.Proccessings.Groups
                 new GroupProccessingDependencyValidationException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogError(groupProccessingDependencyValidationException);
+
             return groupProccessingDependencyValidationException;
+        }
+
+        private GroupProccessingServiceException CreateAndLogProccessingServiceException(Xeption exception)
+        {
+            var groupProccessingServiceException =
+                new GroupProccessingServiceException(exception.InnerException as Xeption);
+
+            this.loggingBroker.LogError(groupProccessingServiceException);
+            
+            return groupProccessingServiceException;
         }
     }
 }
