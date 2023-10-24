@@ -83,5 +83,32 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             this.storageBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public async Task ShouldThrowServiceExceptionOnAddIfServiceErrorOccuresAndLogItAsync()
+        {
+            //given
+            Group someGroup = CreateRandomGroup();
+            var exception = new Exception();
+            var faildServiceException = new FailedServiceException(exception);
+            var expectedGroupServiceException = new GroupServiceException(faildServiceException);
+
+            //when
+            ValueTask<Group> actualGroupTask =
+                this.groupService.AddGroupAsync(someGroup);
+
+            //then
+            await Assert.ThrowsAsync<GroupServiceException> (() => actualGroupTask.AsTask());
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertGroupAsync(someGroup),Times.Once());
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedGroupServiceException))),
+                Times.Once());
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }

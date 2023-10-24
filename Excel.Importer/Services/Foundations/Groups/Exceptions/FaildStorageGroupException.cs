@@ -1,4 +1,9 @@
-﻿using System;
+﻿//===========================
+// Copyright (c) Tarteeb LLC
+// Powering True Leadership
+//===========================
+
+using System;
 using Xeptions;
 
 namespace Excel.Importer.Services.Foundations.Groups.Exceptions
