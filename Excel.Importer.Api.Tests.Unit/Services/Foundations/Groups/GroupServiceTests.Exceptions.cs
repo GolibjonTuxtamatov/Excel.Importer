@@ -93,6 +93,10 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             var faildServiceException = new FailedServiceException(exception);
             var expectedGroupServiceException = new GroupServiceException(faildServiceException);
 
+            this.storageBrokerMock.Setup(broker =>
+                broker.InsertGroupAsync(someGroup))
+                .ThrowsAsync(exception);
+
             //when
             ValueTask<Group> actualGroupTask =
                 this.groupService.AddGroupAsync(someGroup);

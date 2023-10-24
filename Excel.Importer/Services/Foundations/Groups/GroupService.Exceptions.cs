@@ -3,6 +3,7 @@
 // Powering True Leadership
 //===========================
 
+using System;
 using System.Threading.Tasks;
 using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
@@ -44,6 +45,12 @@ namespace Excel.Importer.Services.Foundations.Groups
 
                 throw CreateAndLogDependencyValidationException(alreadyExistGroupException);
             }
+            catch (Exception exception)
+            {
+                var failedServiceException = new FailedServiceException(exception);
+
+                throw CreateAndloGServiceException(failedServiceException);
+            }
         }
 
         private GroupValidationException CreateAndLogValidationException(Xeption exception)
@@ -72,6 +79,14 @@ namespace Excel.Importer.Services.Foundations.Groups
             this.loggingBroker.LogError(groupDependencyValidationException);
             
             return groupDependencyValidationException;
+        }
+
+        private GroupServiceException CreateAndloGServiceException(Xeption exception)
+        {
+            var groupServiceException = new GroupServiceException(exception);
+            this.loggingBroker.LogError(groupServiceException);
+
+            return groupServiceException;
         }
     }
 }
