@@ -4,6 +4,7 @@
 //===========================
 
 using System.Threading.Tasks;
+using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Microsoft.Data.SqlClient;
@@ -36,6 +37,13 @@ namespace Excel.Importer.Services.Foundations.Groups
 
                 throw CreatAndLogCriticalDependencyException(faildStorageGroupException);
             }
+            catch (DuplicateKeyException duplicateKeyException)
+            {
+                var alreadyExistGroupException =
+                    new AlreadyExistGroupException(duplicateKeyException);
+
+                throw CreateAndLogDependencyValidationException(alreadyExistGroupException);
+            }
         }
 
         private GroupValidationException CreateAndLogValidationException(Xeption exception)
@@ -56,6 +64,14 @@ namespace Excel.Importer.Services.Foundations.Groups
             this.loggingBroker.LogCritical(groupDependencyException);
 
             return groupDependencyException;
+        }
+
+        private GroupDependencyValidationException CreateAndLogDependencyValidationException(Xeption exception)
+        {
+            var groupDependencyValidationException = new GroupDependencyValidationException(exception);
+            this.loggingBroker.LogError(groupDependencyValidationException);
+            
+            return groupDependencyValidationException;
         }
     }
 }

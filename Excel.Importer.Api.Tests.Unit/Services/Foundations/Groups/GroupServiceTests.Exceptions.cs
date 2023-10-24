@@ -58,6 +58,10 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             var duplicateKeyException = new DuplicateKeyException(GetRandomString());
             var alreadyExistGroupException = new AlreadyExistGroupException(duplicateKeyException);
 
+            this.storageBrokerMock.Setup(broker =>
+                broker.InsertGroupAsync(someGroup))
+                .ThrowsAsync(duplicateKeyException);
+
             var expectedGroupDependencyValidationException =
                 new GroupDependencyValidationException(alreadyExistGroupException);
 
