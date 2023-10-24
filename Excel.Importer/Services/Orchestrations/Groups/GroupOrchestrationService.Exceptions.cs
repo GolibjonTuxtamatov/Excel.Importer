@@ -29,6 +29,11 @@ namespace Excel.Importer.Services.Orchestrations.Groups
             {
                 throw CreateAndLogOrchetrationDependencyException(groupProccessingDependencyException);
             }
+            catch (GroupProccessingDependencyValidationException groupProccessingDependencyValidationException)
+            {
+                throw CreateAndLogOrchetrationDependencyValidationException(
+                    groupProccessingDependencyValidationException);
+            }
         }
 
         private GroupOrchestrationValidationException CreateAndLogOrchetrationValidationException(Xeption exception)
@@ -49,6 +54,17 @@ namespace Excel.Importer.Services.Orchestrations.Groups
             this.loggingBroker.LogCritical(groupOrchestrationDependencyException);
 
             return groupOrchestrationDependencyException;
+        }
+
+        private GroupOrchestratioDependencyValidationException CreateAndLogOrchetrationDependencyValidationException(
+            Xeption exception)
+        {
+            var groupOrchestratioDependencyValidationException =
+                new GroupOrchestratioDependencyValidationException(exception.InnerException as Xeption);
+
+            this.loggingBroker.LogError(groupOrchestratioDependencyValidationException);
+            
+            return groupOrchestratioDependencyValidationException;
         }
     }
 }
