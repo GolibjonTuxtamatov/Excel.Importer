@@ -34,6 +34,9 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
                 this.loggingBrokerMock.Object);
         }
 
+        private string GetRandomString() =>
+            new MnemonicString().GetValue();
+
         private SqlException GetSqlError()=>
             (SqlException)FormatterServices
             .GetSafeUninitializedObject(typeof(SqlException));

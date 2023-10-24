@@ -4,6 +4,7 @@
 //===========================
 
 using System.Runtime.Serialization;
+using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Microsoft.Data.SqlClient;
@@ -43,6 +44,36 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogCritical(It.Is(SameExceptionAs(expectedGroupDependencyException))),
+                Times.Once());
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
+
+        [Fact]
+        public async Task ShoulThrowDependencyValidationExceptionOnAddIfDuplicateErrorOccuresAndLogitAsync()
+        {
+            //given
+            Group someGroup = CreateRandomGroup();
+            var duplicateKeyException = new DuplicateKeyException(GetRandomString());
+            var alreadyExistGroupException = new AlreadyExistGroupException(duplicateKeyException);
+
+            var expectedGroupDependencyValidationException =
+                new GroupDependencyValidationException(alreadyExistGroupException);
+
+            //when
+            ValueTask<Group> actualGroupTask =
+                this.groupService.AddGroupAsync(someGroup);
+
+            //then
+            await Assert.ThrowsAsync<GroupDependencyValidationException>(() =>
+                actualGroupTask.AsTask());
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertGroupAsync(someGroup),Times.Once());
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedGroupDependencyValidationException))),
                 Times.Once());
 
             this.storageBrokerMock.VerifyNoOtherCalls();
