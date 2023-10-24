@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Applicants;
+using Excel.Importer.Services.Foundations.Applicants.Exceptions;
+using Xeptions;
 
 namespace Excel.Importer.Services.Foundations.Applicants
 {
@@ -23,7 +25,20 @@ namespace Excel.Importer.Services.Foundations.Applicants
 
         public async ValueTask<Applicant> AddApplicantAsync(Applicant applicant)
         {
-            return await this.storageBroker.InsertApplicantAsync(applicant);
+            try
+            {
+                if (applicant == null)
+                    throw new NullApplicantException();
+
+                return await this.storageBroker.InsertApplicantAsync(applicant);
+            }
+            catch (NullApplicantException nullApplicantException)
+            {
+                var applicantValidaionException = new ApplicantValidationException(nullApplicantException);
+                this.loggingBroker.LogError(applicantValidaionException);
+
+                throw applicantValidaionException;
+            }
         }
     }
 }

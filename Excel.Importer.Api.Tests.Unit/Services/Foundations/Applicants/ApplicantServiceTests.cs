@@ -11,6 +11,7 @@ using Excel.Importer.Services.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Applicants.Exceptions;
 using Moq;
 using Tynamix.ObjectFiller;
+using Xeptions;
 
 namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
 {
@@ -35,7 +36,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
         private static Filler<Applicant> CreateApplicantFiller() =>
             new Filler<Applicant>();
 
-        private Expression<Func<Exception, bool>> SameExceptionAs(ApplicantValidationException expectedApplicantValidationException) =>
-        throw new NotImplementedException();
+        private Expression<Func<Xeption, bool>> SameExceptionAs(Xeption exception) =>
+            actualException => actualException.SameExceptionAs(exception);
     }
 }

@@ -16,25 +16,24 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
         [Fact]
         public async Task ShouldThrowValidationExceptionOnAddIfNullAndLogItAsync()
         {
-            //given
+            // given
             Applicant nullApplicant = null;
             var nullApplicantException = new NullApplicantException();
             var expectedApplicantValidationException =
                 new ApplicantValidationException(nullApplicantException);
 
-            //when
+            // when
             ValueTask<Applicant> addApplicantTask = this.applicantService.AddApplicantAsync(nullApplicant);
 
-            ApplicantValidationException actualApplicantValidation = 
+            ApplicantValidationException actualApplicantValidationException =
                 await Assert.ThrowsAsync<ApplicantValidationException>(addApplicantTask.AsTask);
 
-            //then
-            actualApplicantValidation.Should().BeEquivalentTo(expectedApplicantValidationException);
+            // then
+            actualApplicantValidationException.Should().BeEquivalentTo(expectedApplicantValidationException);
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(
                     expectedApplicantValidationException))), Times.Once);
-
 
             this.storageBrokerMock.Verify(broker =>
                 broker.InsertApplicantAsync(It.IsAny<Applicant>()), Times.Never);
