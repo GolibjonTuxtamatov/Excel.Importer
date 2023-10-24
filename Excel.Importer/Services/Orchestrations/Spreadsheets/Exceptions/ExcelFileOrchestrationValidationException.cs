@@ -5,7 +5,7 @@
 
 using Xeptions;
 
-namespace Excel.Importer.Services.Orchestrations.Exceptions
+namespace Excel.Importer.Services.Orchestrations.Spreadsheets.Exceptions
 {
     public class ExcelFileOrchestrationValidationException : Xeption
     {

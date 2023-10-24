@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Applicants;
-using Excel.Importer.Services.Orchestrations.Exceptions;
+using Excel.Importer.Services.Orchestrations.Spreadsheets.Exceptions;
 using Excel.Importer.Services.Proccessings.Spreadsheets.Exceptions;
 using Xeptions;
 
