@@ -3,13 +3,14 @@
 // Powering True Leadership
 //===========================
 
+using System.Linq.Expressions;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Applicants;
+using Excel.Importer.Services.Foundations.Applicants.Exceptions;
 using Moq;
 using Tynamix.ObjectFiller;
-using Xunit;
 
 namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
 {
@@ -34,5 +35,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
         private static Filler<Applicant> CreateApplicantFiller() =>
             new Filler<Applicant>();
 
+        private Expression<Func<Exception, bool>> SameExceptionAs(ApplicantValidationException expectedApplicantValidationException) =>
+        throw new NotImplementedException();
     }
 }
