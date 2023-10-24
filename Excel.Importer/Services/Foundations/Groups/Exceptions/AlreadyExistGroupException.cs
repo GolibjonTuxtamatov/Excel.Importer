@@ -11,7 +11,7 @@ namespace Excel.Importer.Services.Foundations.Groups.Exceptions
     public class AlreadyExistGroupException : Xeption
     {
         public AlreadyExistGroupException(Exception innerException)
-            :base("Group already exist",
+            : base("Group already exist",
                  innerException)
         { }
     }

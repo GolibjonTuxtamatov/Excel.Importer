@@ -3,7 +3,6 @@
 // Powering True Leadership
 //===========================
 
-using System.Runtime.Serialization;
 using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
@@ -74,7 +73,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
                 actualGroupTask.AsTask());
 
             this.storageBrokerMock.Verify(broker =>
-                broker.InsertGroupAsync(someGroup),Times.Once());
+                broker.InsertGroupAsync(someGroup), Times.Once());
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(expectedGroupDependencyValidationException))),
@@ -102,10 +101,10 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
                 this.groupService.AddGroupAsync(someGroup);
 
             //then
-            await Assert.ThrowsAsync<GroupServiceException> (() => actualGroupTask.AsTask());
+            await Assert.ThrowsAsync<GroupServiceException>(() => actualGroupTask.AsTask());
 
             this.storageBrokerMock.Verify(broker =>
-                broker.InsertGroupAsync(someGroup),Times.Once());
+                broker.InsertGroupAsync(someGroup), Times.Once());
 
             this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.Is(SameExceptionAs(expectedGroupServiceException))),

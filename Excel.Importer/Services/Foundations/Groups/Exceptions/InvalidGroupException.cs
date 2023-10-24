@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Foundations.Groups.Exceptions
     public class InvalidGroupException : Xeption
     {
         public InvalidGroupException()
-            :base("Group is invalid")
+            : base("Group is invalid")
         { }
     }
 }

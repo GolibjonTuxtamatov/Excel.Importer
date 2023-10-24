@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Foundations.Groups.Exceptions
     public class GroupDependencyValidationException : Xeption
     {
         public GroupDependencyValidationException(Xeption innerException)
-            :base("Group dependency validation error occured, contact support",
+            : base("Group dependency validation error occured, contact support",
                  innerException)
         { }
     }

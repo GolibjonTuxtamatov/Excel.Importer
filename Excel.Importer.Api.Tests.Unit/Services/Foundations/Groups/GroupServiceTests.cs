@@ -10,7 +10,6 @@ using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups;
-using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Microsoft.Data.SqlClient;
 using Moq;
 using Tynamix.ObjectFiller;
@@ -37,7 +36,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
         private string GetRandomString() =>
             new MnemonicString().GetValue();
 
-        private SqlException GetSqlError()=>
+        private SqlException GetSqlError() =>
             (SqlException)FormatterServices
             .GetSafeUninitializedObject(typeof(SqlException));
 

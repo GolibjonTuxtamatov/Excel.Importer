@@ -11,7 +11,7 @@ namespace Excel.Importer.Services.Foundations.Groups.Exceptions
     public class FailedServiceException : Xeption
     {
         public FailedServiceException(Exception innerException)
-            :base("Service error occured, contact support",
+            : base("Service error occured, contact support",
                  innerException)
         { }
     }

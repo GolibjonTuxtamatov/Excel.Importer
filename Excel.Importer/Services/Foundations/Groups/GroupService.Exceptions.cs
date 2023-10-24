@@ -77,7 +77,7 @@ namespace Excel.Importer.Services.Foundations.Groups
         {
             var groupDependencyValidationException = new GroupDependencyValidationException(exception);
             this.loggingBroker.LogError(groupDependencyValidationException);
-            
+
             return groupDependencyValidationException;
         }
 

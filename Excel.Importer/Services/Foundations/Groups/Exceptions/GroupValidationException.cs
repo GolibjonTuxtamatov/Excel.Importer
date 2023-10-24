@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Foundations.Groups.Exceptions
     public class GroupValidationException : Xeption
     {
         public GroupValidationException(Xeption innerException)
-            :base("Group validation error occured, fix the error try again",
+            : base("Group validation error occured, fix the error try again",
                  innerException)
         { }
     }
