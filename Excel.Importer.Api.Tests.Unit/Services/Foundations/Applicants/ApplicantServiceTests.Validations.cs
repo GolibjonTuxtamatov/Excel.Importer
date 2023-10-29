@@ -79,11 +79,11 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
 
             invalidApplicantException.AddData(
                 key: nameof(Applicant.GroupId),
-                values: "Taxt isw required");
+                values: "Id is required");
 
             invalidApplicantException.AddData(
                 key: nameof(Applicant.GroupName),
-                values: "Taxt isw required");
+                values: "Text is required");
 
             var expectedApplicantValidationException =
                 new ApplicantValidationException(invalidApplicantException);

@@ -24,7 +24,7 @@ namespace Excel.Importer.Services.Foundations.Applicants
         public ValueTask<Applicant> AddApplicantAsync(Applicant applicant) =>
         TryCatch(async () =>
         {
-            ValidateApplicantNotNull(applicant);
+            ValidateApplicantOnAdd(applicant);
 
             return await this.storageBroker.InsertApplicantAsync(applicant);
         });

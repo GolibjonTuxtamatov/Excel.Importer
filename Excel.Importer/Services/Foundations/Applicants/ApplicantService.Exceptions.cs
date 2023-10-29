@@ -24,6 +24,10 @@ namespace Excel.Importer.Services.Foundations.Applicants
             {
                 throw CreateAndLogValidationException(nullApplicantException);
             }
+            catch (InvalidApplicantException invalidApplicantException)
+            {
+                throw CreateAndLogValidationException(invalidApplicantException);
+            }
         }
 
         private ApplicantValidationException CreateAndLogValidationException(Xeption exception)
