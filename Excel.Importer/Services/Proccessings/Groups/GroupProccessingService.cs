@@ -17,7 +17,7 @@ namespace Excel.Importer.Services.Proccessings.Groups
         private readonly IGroupService groupService;
         private readonly ILoggingBroker loggingBroker;
 
-        public GroupProccessingService(IGroupService groupService,ILoggingBroker loggingBroker)
+        public GroupProccessingService(IGroupService groupService, ILoggingBroker loggingBroker)
         {
             this.groupService = groupService;
             this.loggingBroker = loggingBroker;

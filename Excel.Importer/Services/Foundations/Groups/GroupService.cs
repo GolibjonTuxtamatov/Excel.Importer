@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Groups;
-using Excel.Importer.Services.Foundations.Groups.Exceptions;
-using Microsoft.Data.SqlClient;
 
 namespace Excel.Importer.Services.Foundations.Groups
 {

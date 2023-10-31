@@ -3,7 +3,6 @@
 // Powering True Leadership
 //===========================
 
-using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using FluentAssertions;
 using Microsoft.Data.SqlClient;

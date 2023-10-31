@@ -67,7 +67,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups
                 new GroupOrchestratioDependencyValidationException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogError(groupOrchestratioDependencyValidationException);
-            
+
             return groupOrchestratioDependencyValidationException;
         }
 
@@ -77,7 +77,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups
                 new GroupOrchestrationServiceException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogError(groupOrchestrationServiceException);
-            
+
             return groupOrchestrationServiceException;
         }
     }

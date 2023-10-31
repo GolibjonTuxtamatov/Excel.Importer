@@ -10,8 +10,8 @@ namespace Excel.Importer.Services.Proccessings.Groups.Exceptions
     public class GroupProccessingServiceException : Xeption
     {
         public GroupProccessingServiceException(Xeption innerException)
-            :base("Group proccessing service error occured, contact support",
+            : base("Group proccessing service error occured, contact support",
                  innerException)
-        {}
+        { }
     }
 }

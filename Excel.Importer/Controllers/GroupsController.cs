@@ -39,7 +39,7 @@ namespace Excel.Importer.Controllers
                 return BadRequest(groupOrchestrationValidationException.InnerException);
             }
             catch (GroupOrchestratioDependencyValidationException groupOrchestrationDependencyvalidationExecption)
-                when(groupOrchestrationDependencyvalidationExecption.InnerException is AlreadyExistGroupException)
+                when (groupOrchestrationDependencyvalidationExecption.InnerException is AlreadyExistGroupException)
             {
                 return Conflict(groupOrchestrationDependencyvalidationExecption.InnerException);
             }
