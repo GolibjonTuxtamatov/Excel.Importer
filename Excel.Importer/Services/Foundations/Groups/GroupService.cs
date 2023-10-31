@@ -32,7 +32,7 @@ namespace Excel.Importer.Services.Foundations.Groups
 
         public IQueryable<Group> RetrieveAllGroups()
         {
-            return this.storageBroker.SelectAllGroup();
+            throw new System.NotImplementedException();
         }
     }
 }
