@@ -51,6 +51,10 @@ namespace Excel.Importer.Services.Proccessings.Groups
             {
                 throw CreateAndLogProccessingDependencyException(groupdDependencyException);
             }
+            catch (GroupServiceException groupServiceException)
+            {
+                throw CreateAndLogProccessingServiceException(groupServiceException);
+            }
         }
 
         private GroupProccessingValidationException CreateAndLogProccessingValidationException(Xeption exception)
