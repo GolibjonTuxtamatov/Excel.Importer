@@ -6,7 +6,7 @@
 using System;
 using Xeptions;
 
-namespace Excel.Importer.Services.Foundations.Spreadsheets.Exceptions
+namespace Excel.Importer.Models.Foundations.ExternalApplicants.Exceptions
 {
     public class NullExcelFileException : Xeption
     {
