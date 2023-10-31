@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Foundations.Applicants.Exceptions
 {
     public class ApplicantDependencyValidationExcpetion : Xeption
     {
-        public ApplicantDependencyValidationExcpetion(Exception innerException)
+        public ApplicantDependencyValidationExcpetion(Xeption innerException)
             : base(message: "Applicant dependency validation error occured, fix the errors and try again", innerException)
         {}
     }

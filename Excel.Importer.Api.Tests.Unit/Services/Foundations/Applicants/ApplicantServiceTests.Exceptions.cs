@@ -89,5 +89,38 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
             this.storageBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
         }
+        [Fact]
+        public async Task ShouldThrowServiceExceptionOnAddIfServiceErrorOccursAndLogItAsync()
+        {
+            //given
+            Applicant someApplicant = CreateRandomApplicant();
+            var serviceException = new Exception();
+
+            var failedApplicantServiceException = 
+                new FailedApplicantServiceException(serviceException);
+
+            var expectedApplicantServiceException = 
+                new ApplicantServiceException(failedApplicantServiceException);
+
+            this.storageBrokerMock.Setup(broker =>
+                broker.InsertApplicantAsync(someApplicant))
+                .ThrowsAsync(serviceException);
+
+            //when
+            ValueTask<Applicant> addApplicantTask =
+                this.applicantService.AddApplicantAsync(someApplicant);
+
+            //then
+            await Assert.ThrowsAsync<ApplicantServiceException>(() =>
+                addApplicantTask.AsTask());
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.InsertApplicantAsync(someApplicant),
+                    Times.Once);
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedApplicantServiceException))),
+                    Times.Once);
+        }
     }
 }
