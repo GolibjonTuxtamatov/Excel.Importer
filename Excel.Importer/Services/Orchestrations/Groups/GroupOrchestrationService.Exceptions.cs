@@ -52,6 +52,10 @@ namespace Excel.Importer.Services.Orchestrations.Groups
             {
                 throw CreateAndLogOrchetrationDependencyException(groupProccessingDependencyException);
             }
+            catch (GroupProccessingServiceException groupProccessingServiceException)
+            {
+                throw CreateAndLogOrchetrationServiceException(groupProccessingServiceException);
+            }
         }
 
         private GroupOrchestrationValidationException CreateAndLogOrchetrationValidationException(Xeption exception)
