@@ -45,6 +45,13 @@ namespace Excel.Importer.Services.Foundations.Applicants
 
                 throw CreateAndLogDependencyValidationException(alreadyExistApplicantException);
             }
+            catch(Exception exception)
+            {
+                var failedApplicantServiceException =
+                    new FailedApplicantServiceException(exception);
+
+                throw CreateAndLogServiceException(failedApplicantServiceException);
+            }
         }
 
         private ApplicantValidationException CreateAndLogValidationException(Xeption exception)
@@ -72,6 +79,14 @@ namespace Excel.Importer.Services.Foundations.Applicants
             this.loggingBroker.LogError(applicantDependencyValidationExcpetion);
 
             return applicantDependencyValidationExcpetion;
+        }
+
+        private ApplicantServiceException CreateAndLogServiceException(Xeption exception)
+        {
+            var  applicantServiceException = new ApplicantServiceException(exception);
+            this.loggingBroker.LogError(applicantServiceException);
+
+            return applicantServiceException;
         }
     }
 }
