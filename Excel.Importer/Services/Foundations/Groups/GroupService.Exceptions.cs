@@ -4,6 +4,7 @@
 //===========================
 
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
@@ -16,6 +17,7 @@ namespace Excel.Importer.Services.Foundations.Groups
     public partial class GroupService
     {
         private delegate ValueTask<Group> ReturningGroupFunctuion();
+        private delegate IQueryable<Group> ReturningGroupsFunction();
 
         private async ValueTask<Group> TryCatch(ReturningGroupFunctuion returningGroupFunctuion)
         {
@@ -44,6 +46,27 @@ namespace Excel.Importer.Services.Foundations.Groups
                     new AlreadyExistGroupException(duplicateKeyException);
 
                 throw CreateAndLogDependencyValidationException(alreadyExistGroupException);
+            }
+            catch (Exception exception)
+            {
+                var failedServiceException = new FailedServiceException(exception);
+
+                throw CreateAndloGServiceException(failedServiceException);
+            }
+        }
+
+        private IQueryable<Group> TryCatch(ReturningGroupsFunction returningGroupsFunction)
+        {
+            try
+            {
+                return returningGroupsFunction();
+            }
+            catch (SqlException sqlException)
+            {
+                var faildStorageGroupException =
+                    new FaildStorageGroupException(sqlException);
+
+                throw CreatAndLogCriticalDependencyException(faildStorageGroupException);
             }
             catch (Exception exception)
             {

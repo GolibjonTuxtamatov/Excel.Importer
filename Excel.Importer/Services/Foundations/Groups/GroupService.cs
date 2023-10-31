@@ -30,9 +30,7 @@ namespace Excel.Importer.Services.Foundations.Groups
                 return await this.storageBroker.InsertGroupAsync(group);
             });
 
-        public IQueryable<Group> RetrieveAllGroups()
-        {
-            return this.storageBroker.SelectAllGroup();
-        }
+        public IQueryable<Group> RetrieveAllGroups() =>
+            TryCatch(() => this.storageBroker.SelectAllGroup());
     }
 }
