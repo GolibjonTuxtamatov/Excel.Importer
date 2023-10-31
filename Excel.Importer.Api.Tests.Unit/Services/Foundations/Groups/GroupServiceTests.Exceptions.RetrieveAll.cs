@@ -47,5 +47,38 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             this.storageBrokerMock.VerifyNoOtherCalls();
             this.loggingBrokerMock.VerifyNoOtherCalls();
         }
+
+        [Fact]
+        public void ShouldThrowServiceExceptionOnRetrieveAllIfServiceErrorOccursAndLogIt()
+        {
+            //given
+            var exception = new Exception();
+            var failedServiceException = new FailedServiceException(exception);
+
+            var expectedGroupServiceException =
+                new GroupServiceException(failedServiceException);
+
+            this.storageBrokerMock.Setup(broker =>
+                broker.SelectAllGroup()).Throws(exception);
+
+            //when
+            Action groupRetrieveAllAction = () => this.groupService.RetrieveAllGroups();
+
+            GroupServiceException actualGroupException = 
+                Assert.Throws<GroupServiceException>(groupRetrieveAllAction);
+
+            //then
+            actualGroupException.Should().BeEquivalentTo(expectedGroupServiceException);
+
+            this.storageBrokerMock.Verify(broker =>
+                broker.SelectAllGroup(), Times.Once());
+
+            this.loggingBrokerMock.Verify(broker =>
+                broker.LogError(It.Is(SameExceptionAs(expectedGroupServiceException))),
+                Times.Once());
+
+            this.storageBrokerMock.VerifyNoOtherCalls();
+            this.loggingBrokerMock.VerifyNoOtherCalls();
+        }
     }
 }

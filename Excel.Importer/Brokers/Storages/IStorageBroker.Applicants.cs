@@ -13,6 +13,5 @@ namespace Excel.Importer.Brokers.Storages
     public partial interface IStorageBroker
     {
         ValueTask<Applicant> InsertApplicantAsync(Applicant applicant);
-        IQueryable<Group> SelectAllGroups();
     }
 }

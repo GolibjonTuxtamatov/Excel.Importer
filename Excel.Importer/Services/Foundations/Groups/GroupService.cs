@@ -31,6 +31,6 @@ namespace Excel.Importer.Services.Foundations.Groups
             });
 
         public IQueryable<Group> RetrieveAllGroups() =>
-            TryCatch(() => this.storageBroker.SelectAllGroups());
+            TryCatch(() => this.storageBroker.SelectAllGroup());
     }
 }
