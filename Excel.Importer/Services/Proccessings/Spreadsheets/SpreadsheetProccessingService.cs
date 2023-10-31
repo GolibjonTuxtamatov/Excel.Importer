@@ -6,23 +6,27 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Models.Foundations.ExternalApplicants;
 using Excel.Importer.Services.Foundations.Spreadsheets;
 
 namespace Excel.Importer.Services.Proccessings.Spreadsheets
 {
-    public class SpreadsheetProccessingService : ISpreadsheetProccessingService
+    public partial class SpreadsheetProccessingService : ISpreadsheetProccessingService
     {
         private readonly ISpreadsheetService spreadsheetService;
+        private readonly ILoggingBroker loggingBroker;
 
-        public SpreadsheetProccessingService(ISpreadsheetService spreadsheetService)
+        public SpreadsheetProccessingService(ISpreadsheetService spreadsheetService, ILoggingBroker loggingBroker)
         {
             this.spreadsheetService = spreadsheetService;
+            this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<List<ExternalApplicant>> GetExternalApplicantsAsync(MemoryStream spreadsheet)
+        public ValueTask<List<ExternalApplicant>> GetExternalApplicantsAsync(MemoryStream spreadsheet) =>
+        TryCatch(async () =>
         {
-            return this.spreadsheetService.ImportExternalApplicantAsync(spreadsheet);
-        }
+            return await this.spreadsheetService.ImportExternalApplicantAsync(spreadsheet);
+        });
     }
 }

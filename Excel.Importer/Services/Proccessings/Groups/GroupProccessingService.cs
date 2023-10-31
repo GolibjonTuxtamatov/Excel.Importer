@@ -6,24 +6,28 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups;
 
 namespace Excel.Importer.Services.Proccessings.Groups
 {
-    public class GroupProccessingService : IGroupProccessingService
+    public partial class GroupProccessingService : IGroupProccessingService
     {
         private readonly IGroupService groupService;
+        private readonly ILoggingBroker loggingBroker;
 
-        public GroupProccessingService(IGroupService groupService)
+        public GroupProccessingService(IGroupService groupService,ILoggingBroker loggingBroker)
         {
             this.groupService = groupService;
+            this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<Group> AddGroupAsync(Group group)
+        public ValueTask<Group> AddGroupAsync(Group group) =>
+        TryCatch(async () =>
         {
-            return this.groupService.AddGroupAsync(group);
-        }
+            return await this.groupService.AddGroupAsync(group);
+        });
 
         public IQueryable<Group> RetrieveAllGroups()
         {

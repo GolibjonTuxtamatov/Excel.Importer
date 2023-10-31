@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.ExternalApplicants;
 using Excel.Importer.Services.Proccessings.Applicants;
@@ -16,23 +17,31 @@ using Excel.Importer.Services.Proccessings.Spreadsheets;
 
 namespace Excel.Importer.Services.Orchestrations.Spreadsheets
 {
-    public class SpreadsheetOrchestrationService : ISpreadsheetOrchestrationService
+    public partial class SpreadsheetOrchestrationService : ISpreadsheetOrchestrationService
     {
         private readonly ISpreadsheetProccessingService spreadsheetProccessingService;
         private readonly IApplicantProccessingService applicantProccessingService;
         private readonly IGroupProccessingService groupProccessingService;
-
+        private readonly ILoggingBroker loggingBroker;
         public SpreadsheetOrchestrationService(
             ISpreadsheetProccessingService spreadsheetProccessingService,
             IApplicantProccessingService applicantProccessingService,
-            IGroupProccessingService groupProccessingService)
+            IGroupProccessingService groupProccessingService,
+            ILoggingBroker loggingBroker)
         {
             this.spreadsheetProccessingService = spreadsheetProccessingService;
             this.applicantProccessingService = applicantProccessingService;
             this.groupProccessingService = groupProccessingService;
+            this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<ICollection<Applicant>> ImportExternalApplicants(MemoryStream spreadsheet)
+        public ValueTask<ICollection<Applicant>> ImportExternalApplicants(MemoryStream spreadsheet) =>
+        TryCatch(async () =>
+        {
+            return await SendExternalApplicantToInternalApplicantAdd(spreadsheet);
+        });
+
+        private async ValueTask<ICollection<Applicant>> SendExternalApplicantToInternalApplicantAdd(MemoryStream spreadsheet)
         {
             ICollection<Applicant> persistedApplicants = new Collection<Applicant>();
 
