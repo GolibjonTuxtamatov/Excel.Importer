@@ -4,7 +4,6 @@
 //===========================
 
 using System;
-using Azure.Messaging;
 using Xeptions;
 
 namespace Excel.Importer.Models.Foundations.Applicants.Exceptions

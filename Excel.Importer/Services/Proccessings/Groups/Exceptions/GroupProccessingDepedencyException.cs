@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Proccessings.Groups.Exceptions
     public class GroupProccessingDepedencyException : Xeption
     {
         public GroupProccessingDepedencyException(Xeption innerException)
-            :base("Group proccessing dependency error occured, fix the error try again",
+            : base("Group proccessing dependency error occured, fix the error try again",
                  innerException)
         { }
     }

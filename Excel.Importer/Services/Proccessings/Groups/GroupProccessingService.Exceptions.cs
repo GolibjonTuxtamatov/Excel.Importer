@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Excel.Importer.Services.Proccessings.Groups.Exceptions;
-using Microsoft.AspNetCore.Authentication;
 using Xeptions;
 
 namespace Excel.Importer.Services.Proccessings.Groups
@@ -34,7 +33,7 @@ namespace Excel.Importer.Services.Proccessings.Groups
             {
                 throw CreateAndLogProccessingDependencyValidationException(groupDependencyValidationException);
             }
-            catch (GroupServiceException  groupServiceException)
+            catch (GroupServiceException groupServiceException)
             {
                 throw CreateAndLogProccessingServiceException(groupServiceException);
             }
@@ -77,7 +76,7 @@ namespace Excel.Importer.Services.Proccessings.Groups
                 new GroupProccessingServiceException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogError(groupProccessingServiceException);
-            
+
             return groupProccessingServiceException;
         }
     }

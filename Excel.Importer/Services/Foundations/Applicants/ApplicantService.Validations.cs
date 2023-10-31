@@ -4,9 +4,10 @@
 //===========================
 
 using System;
+using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.Applicants.Exceptions;
 
-namespace Excel.Importer.Models.Foundations.Applicants
+namespace Excel.Importer.Services.Foundations.Applicants
 {
     public partial class ApplicantService
     {

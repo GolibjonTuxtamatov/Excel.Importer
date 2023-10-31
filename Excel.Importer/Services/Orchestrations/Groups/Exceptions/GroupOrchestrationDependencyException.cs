@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups.Exceptions
     public class GroupOrchestrationDependencyException : Xeption
     {
         public GroupOrchestrationDependencyException(Xeption innerException)
-            :base("Group orchestration dependency error occured, contact support")
+            : base("Group orchestration dependency error occured, contact support")
         { }
     }
 }

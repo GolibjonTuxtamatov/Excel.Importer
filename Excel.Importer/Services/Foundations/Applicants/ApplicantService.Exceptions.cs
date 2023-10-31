@@ -9,7 +9,6 @@ using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.Applicants.Exceptions;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using Xeptions;
 
 namespace Excel.Importer.Services.Foundations.Applicants
@@ -34,18 +33,18 @@ namespace Excel.Importer.Services.Foundations.Applicants
             }
             catch (SqlException sqlException)
             {
-                var failedApplicantStorageException = 
+                var failedApplicantStorageException =
                     new FailedApplicantStorageException(sqlException);
 
                 throw CreateAndLogCriticalDependencyException(failedApplicantStorageException);
             }
-            catch(DuplicateKeyException duplicateKeyException)
+            catch (DuplicateKeyException duplicateKeyException)
             {
                 var alreadyExistApplicantException = new AlreadyExistApplicantException(duplicateKeyException);
 
                 throw CreateAndLogDependencyValidationException(alreadyExistApplicantException);
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 var failedApplicantServiceException =
                     new FailedApplicantServiceException(exception);
@@ -83,7 +82,7 @@ namespace Excel.Importer.Services.Foundations.Applicants
 
         private ApplicantServiceException CreateAndLogServiceException(Xeption exception)
         {
-            var  applicantServiceException = new ApplicantServiceException(exception);
+            var applicantServiceException = new ApplicantServiceException(exception);
             this.loggingBroker.LogError(applicantServiceException);
 
             return applicantServiceException;

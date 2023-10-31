@@ -3,7 +3,6 @@
 // Powering True Leadership
 //===========================
 
-using System;
 using Xeptions;
 
 namespace Excel.Importer.Models.Foundations.Applicants.Exceptions
