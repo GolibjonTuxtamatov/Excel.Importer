@@ -3,6 +3,7 @@
 // Powering True Leadership
 //===========================
 
+using System.Linq;
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
@@ -14,6 +15,7 @@ namespace Excel.Importer.Services.Proccessings.Groups
     public partial class GroupProccessingService
     {
         private delegate ValueTask<Group> ReturningGroupFunction();
+        private delegate IQueryable<Group> ReturningGroupsFunction();
 
         private async ValueTask<Group> TryCatch(ReturningGroupFunction returningGroupFunction)
         {
@@ -32,6 +34,22 @@ namespace Excel.Importer.Services.Proccessings.Groups
             catch (GroupDependencyValidationException groupDependencyValidationException)
             {
                 throw CreateAndLogProccessingDependencyValidationException(groupDependencyValidationException);
+            }
+            catch (GroupServiceException groupServiceException)
+            {
+                throw CreateAndLogProccessingServiceException(groupServiceException);
+            }
+        }
+
+        private IQueryable<Group> TryCatch(ReturningGroupsFunction returningGroupsFunction)
+        {
+            try
+            {
+                return returningGroupsFunction();
+            }
+            catch (GroupDependencyException groupdDependencyException)
+            {
+                throw CreateAndLogProccessingDependencyException(groupdDependencyException);
             }
             catch (GroupServiceException groupServiceException)
             {

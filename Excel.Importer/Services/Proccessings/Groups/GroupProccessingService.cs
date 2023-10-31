@@ -29,10 +29,8 @@ namespace Excel.Importer.Services.Proccessings.Groups
             return await this.groupService.AddGroupAsync(group);
         });
 
-        public IQueryable<Group> RetrieveAllGroups()
-        {
-            return this.groupService.RetrieveAllGroups();
-        }
+        public IQueryable<Group> RetrieveAllGroups() =>
+            TryCatch(() => this.groupService.RetrieveAllGroups());
 
         public async ValueTask<Guid> EnsureExistGroupAsync(string groupName)
         {
