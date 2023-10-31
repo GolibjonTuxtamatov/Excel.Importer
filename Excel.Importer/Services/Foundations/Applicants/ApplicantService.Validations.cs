@@ -11,7 +11,7 @@ namespace Excel.Importer.Services.Foundations.Applicants
 {
     public partial class ApplicantService
     {
-        private  void ValidateApplicantOnAdd(Applicant applicant) 
+        private void ValidateApplicantOnAdd(Applicant applicant)
         {
             ValidateApplicantNotNull(applicant);
 

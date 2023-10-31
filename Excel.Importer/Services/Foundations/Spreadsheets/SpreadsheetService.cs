@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Spreadsheets;
 using Excel.Importer.Models.Foundations.ExternalApplicants;
-using Excel.Importer.Services.Foundations.Spreadsheets.Exceptions;
 
 namespace Excel.Importer.Services.Foundations.Spreadsheets
 {
@@ -24,6 +23,6 @@ namespace Excel.Importer.Services.Foundations.Spreadsheets
             {
                 return await this.spreadsheetBroker.ReadSpreadsheetAsync(spreasheet);
             });
-        
+
     }
 }

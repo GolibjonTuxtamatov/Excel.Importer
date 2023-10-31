@@ -33,7 +33,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
             //then
             actualApplicant.Should().BeEquivalentTo(expectedApplicant);
 
-            this.storageBrokerMock.Verify(broker => 
+            this.storageBrokerMock.Verify(broker =>
             broker.InsertApplicantAsync(inputApplicant), Times.Once());
 
             this.storageBrokerMock.VerifyNoOtherCalls();

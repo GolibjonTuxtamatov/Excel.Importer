@@ -8,7 +8,6 @@ using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Applicants;
-using Excel.Importer.Services.Foundations.Applicants.Exceptions;
 using Moq;
 using Tynamix.ObjectFiller;
 using Xeptions;
@@ -23,7 +22,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
 
         public ApplicantServiceTests()
         {
-            this.storageBrokerMock = new  Mock<IStorageBroker>();
+            this.storageBrokerMock = new Mock<IStorageBroker>();
             this.loggingBrokerMock = new Mock<ILoggingBroker>();
             this.applicantService = new ApplicantService(
                 storageBroker: this.storageBrokerMock.Object,
