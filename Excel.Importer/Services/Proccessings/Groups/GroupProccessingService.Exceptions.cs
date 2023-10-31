@@ -49,10 +49,10 @@ namespace Excel.Importer.Services.Proccessings.Groups
             return groupProccessingValidationException;
         }
 
-        private GroupProccessingDepedencyException CreateAndLogProccessingDependencyException(Xeption exception)
+        private ApplicantProccessingDepedencyException CreateAndLogProccessingDependencyException(Xeption exception)
         {
             var groupProccessingDepedencyException =
-                new GroupProccessingDepedencyException(exception.InnerException as Xeption);
+                new ApplicantProccessingDepedencyException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogCritical(groupProccessingDepedencyException);
 

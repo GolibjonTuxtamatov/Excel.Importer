@@ -25,7 +25,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups
             {
                 throw CreateAndLogOrchetrationValidationException(groupProccessingValidationException);
             }
-            catch (GroupProccessingDepedencyException groupProccessingDependencyException)
+            catch (ApplicantProccessingDepedencyException groupProccessingDependencyException)
             {
                 throw CreateAndLogOrchetrationDependencyException(groupProccessingDependencyException);
             }

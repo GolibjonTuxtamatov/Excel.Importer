@@ -20,9 +20,10 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<Applicant> AddApplicantAsync(Applicant applicant)
+        public ValueTask<Applicant> AddApplicantAsync(Applicant applicant) =>
+            TryCatch(async () =>
         {
-            return this.applicantService.AddApplicantAsync(applicant);
-        }
+            return await this.applicantService.AddApplicantAsync(applicant);
+        });
     }
 }

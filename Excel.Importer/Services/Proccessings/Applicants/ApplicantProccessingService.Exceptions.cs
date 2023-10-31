@@ -6,6 +6,7 @@
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.Applicants.Exceptions;
+using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Excel.Importer.Services.Proccessings.Groups.Exceptions;
 using Xeptions;
 
@@ -25,6 +26,10 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             {
                 throw CreateAndLogProccessingValidationException(applicantValidationException);
             }
+            catch (ApplicantDependencyExcpetion applicantDependencyExcpetion)
+            {
+                throw CreateAndLogProccessingDependencyException(applicantDependencyExcpetion);
+            }
         }
 
         private ApplicantProccessingValidationException CreateAndLogProccessingValidationException(Xeption exception)
@@ -35,6 +40,16 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             this.loggingBroker.LogError(applicantProccessingValidationException);
 
             return applicantProccessingValidationException;
+        }
+
+        private ApplicantProccessingDepedencyException CreateAndLogProccessingDependencyException(Xeption exception)
+        {
+            var applicantProccessingDepedencyException =
+                new ApplicantProccessingDepedencyException(exception.InnerException as Xeption);
+
+            this.loggingBroker.LogCritical(applicantProccessingDepedencyException);
+
+            return applicantProccessingDepedencyException;
         }
     }
 }
