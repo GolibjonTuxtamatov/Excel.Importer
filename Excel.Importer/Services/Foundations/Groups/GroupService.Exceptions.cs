@@ -68,6 +68,12 @@ namespace Excel.Importer.Services.Foundations.Groups
 
                 throw CreatAndLogCriticalDependencyException(faildStorageGroupException);
             }
+            catch (Exception exception)
+            {
+                var failedServiceException = new FailedServiceException(exception);
+
+                throw CreateAndloGServiceException(failedServiceException);
+            }
         }
 
         private GroupValidationException CreateAndLogValidationException(Xeption exception)
