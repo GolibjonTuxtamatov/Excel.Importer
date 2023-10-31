@@ -32,19 +32,7 @@ namespace Excel.Importer.Services.Foundations.Groups
                 return await this.storageBroker.InsertGroupAsync(group);
             });
 
-        public IQueryable<Group> RetrieveAllGroups()
-        {
-            try
-            {
-                return this.storageBroker.SelectAllGroup();
-            }
-            catch (SqlException sqlException)
-            {
-                var faildStorageGroupException =
-                    new FaildStorageGroupException(sqlException);
-
-                throw CreatAndLogCriticalDependencyException(faildStorageGroupException);
-            }
-        }
+        public IQueryable<Group> RetrieveAllGroups() =>
+            TryCatch(() => this.storageBroker.SelectAllGroups());
     }
 }
