@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups.Exceptions
     public class GroupOrchestrationServiceException : Xeption
     {
         public GroupOrchestrationServiceException(Xeption innerException)
-            :base("Group orchestration service error occured, contact support",
+            : base("Group orchestration service error occured, contact support",
                  innerException)
         { }
     }

@@ -46,6 +46,9 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
         private Group CreateRandomGroup() =>
             CreateGroupFiller().Create();
 
+        private IQueryable<Group> CreateRandomGroups() =>
+            CreateGroupFiller().Create(4).AsQueryable();
+
         private Filler<Group> CreateGroupFiller() =>
             new Filler<Group>();
     }

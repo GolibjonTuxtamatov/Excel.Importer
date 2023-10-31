@@ -10,7 +10,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups.Exceptions
     public class GroupOrchestrationValidationException : Xeption
     {
         public GroupOrchestrationValidationException(Xeption innerException)
-            :base("Group orchestration validation error occured, fix the error and try again",
+            : base("Group orchestration validation error occured, fix the error and try again",
                  innerException)
         { }
     }
