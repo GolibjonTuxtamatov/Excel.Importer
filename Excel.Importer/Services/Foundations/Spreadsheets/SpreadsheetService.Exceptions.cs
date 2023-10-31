@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.ExternalApplicants;
-using Excel.Importer.Services.Foundations.Spreadsheets.Exceptions;
+using Excel.Importer.Models.Foundations.ExternalApplicants.Exceptions;
 using Xeptions;
 
 namespace Excel.Importer.Services.Foundations.Spreadsheets

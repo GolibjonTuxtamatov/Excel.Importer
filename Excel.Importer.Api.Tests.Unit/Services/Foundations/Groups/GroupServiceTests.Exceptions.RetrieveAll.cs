@@ -64,7 +64,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
             //when
             Action groupRetrieveAllAction = () => this.groupService.RetrieveAllGroups();
 
-            GroupServiceException actualGroupException = 
+            GroupServiceException actualGroupException =
                 Assert.Throws<GroupServiceException>(groupRetrieveAllAction);
 
             //then
