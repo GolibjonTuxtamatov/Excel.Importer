@@ -5,6 +5,7 @@
 
 using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Applicants;
+using Excel.Importer.Models.Foundations.Applicants.Exceptions;
 using Excel.Importer.Services.Foundations.Applicants.Exceptions;
 using Microsoft.Data.SqlClient;
 using Moq;

@@ -6,7 +6,7 @@
 using System;
 using Xeptions;
 
-namespace Excel.Importer.Services.Foundations.Applicants.Exceptions
+namespace Excel.Importer.Models.Foundations.Applicants.Exceptions
 {
     public class FailedApplicantServiceException : Xeption
     {
