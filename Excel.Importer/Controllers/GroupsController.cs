@@ -58,9 +58,22 @@ namespace Excel.Importer.Controllers
         }
 
         [HttpGet]
-        public IQueryable<Group> GetAllGroups()
+        public ActionResult<IQueryable<Group>> GetAllGroups()
         {
-            return this.groupOrchestrationService.RetrieveAllGroups();
+            try
+            {
+                IQueryable<Group> groups = this.groupOrchestrationService.RetrieveAllGroups();
+
+                return Ok(groups);
+            }
+            catch (GroupOrchestrationDependencyException groupOrchestrationDependencyException)
+            {
+                return InternalServerError(groupOrchestrationDependencyException.InnerException);
+            }
+            catch (GroupOrchestrationServiceException groupOrchestrationServiceException)
+            {
+                return InternalServerError(groupOrchestrationServiceException);
+            }
         }
     }
 }
