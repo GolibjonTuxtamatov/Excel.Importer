@@ -3,10 +3,13 @@
 // Powering True Leadership
 //===========================
 
+using System;
 using System.Threading.Tasks;
+using EFxceptions.Models.Exceptions;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Applicants.Exceptions;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Xeptions;
 
 namespace Excel.Importer.Services.Foundations.Applicants
@@ -36,6 +39,12 @@ namespace Excel.Importer.Services.Foundations.Applicants
 
                 throw CreateAndLogCriticalDependencyException(failedApplicantStorageException);
             }
+            catch(DuplicateKeyException duplicateKeyException)
+            {
+                var alreadyExistApplicantException = new AlreadyExistApplicantException(duplicateKeyException);
+
+                throw CreateAndLogDependencyValidationException(alreadyExistApplicantException);
+            }
         }
 
         private ApplicantValidationException CreateAndLogValidationException(Xeption exception)
@@ -54,6 +63,15 @@ namespace Excel.Importer.Services.Foundations.Applicants
             this.loggingBroker.LogCritical(applicantDependencyExcpetion);
 
             return applicantDependencyExcpetion;
+        }
+
+        private ApplicantDependencyValidationExcpetion CreateAndLogDependencyValidationException(Xeption exception)
+        {
+            var applicantDependencyValidationExcpetion = new ApplicantDependencyValidationExcpetion(exception);
+
+            this.loggingBroker.LogError(applicantDependencyValidationExcpetion);
+
+            return applicantDependencyValidationExcpetion;
         }
     }
 }
