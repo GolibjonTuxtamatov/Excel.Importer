@@ -30,9 +30,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups
             return await this.groupProccessingService.AddGroupAsync(group);
         });
 
-        public IQueryable<Group> RetrieveAllGroups()
-        {
-            return this.groupProccessingService.RetrieveAllGroups();
-        }
+        public IQueryable<Group> RetrieveAllGroups() =>
+            TryCatch(() => this.groupProccessingService.RetrieveAllGroups());
     }
 }
