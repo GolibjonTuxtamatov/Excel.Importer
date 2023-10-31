@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Brokers.Storages;
 using Excel.Importer.Models.Foundations.Groups;
+using Excel.Importer.Services.Foundations.Groups.Exceptions;
+using Microsoft.Data.SqlClient;
 
 namespace Excel.Importer.Services.Foundations.Groups
 {
@@ -32,7 +34,17 @@ namespace Excel.Importer.Services.Foundations.Groups
 
         public IQueryable<Group> RetrieveAllGroups()
         {
-            return this.storageBroker.SelectAllGroup();
+            try
+            {
+                return this.storageBroker.SelectAllGroup();
+            }
+            catch (SqlException sqlException)
+            {
+                var faildStorageGroupException =
+                    new FaildStorageGroupException(sqlException);
+
+                throw CreatAndLogCriticalDependencyException(faildStorageGroupException);
+            }
         }
     }
 }
