@@ -13,7 +13,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Groups
     public partial class GroupServiceTests
     {
         [Fact]
-        public void ShouldGetGroups()
+        public void ShouldRetrieveAllGroups()
         {
             //given
             IQueryable<Group> storedGroups = CreateRandomGroups();
