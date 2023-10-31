@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excel.Importer", "Excel.Imp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excel.Importer.Api.Infrastructure.Build", "Excel.Importer.Api.Infrastructure.Build\Excel.Importer.Api.Infrastructure.Build.csproj", "{47320A67-9352-4697-963D-BD5ED1180CA3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excel.Importer.Api.Tests.Unit", "Excel.Importer.Api.Tests.Unit\Excel.Importer.Api.Tests.Unit.csproj", "{3551A3B4-DE2E-48FF-AA34-600711177A90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excel.Importer.Api.Tests.Unit", "Excel.Importer.Api.Tests.Unit\Excel.Importer.Api.Tests.Unit.csproj", "{3551A3B4-DE2E-48FF-AA34-600711177A90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

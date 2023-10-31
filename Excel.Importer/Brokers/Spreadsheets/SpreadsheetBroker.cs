@@ -13,7 +13,6 @@ namespace Excel.Importer.Brokers.Spreadsheets
 {
     public class SpreadsheetBroker : ISpreadsheetBroker
     {
-
         public async ValueTask<List<ExternalApplicant>> ReadSpreadsheetAsync(MemoryStream spreadsheet)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
