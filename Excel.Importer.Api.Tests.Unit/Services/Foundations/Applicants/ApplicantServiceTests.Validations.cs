@@ -5,7 +5,6 @@
 
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.Applicants.Exceptions;
-using Excel.Importer.Services.Foundations.Applicants.Exceptions;
 using FluentAssertions;
 using Moq;
 using Xunit;
