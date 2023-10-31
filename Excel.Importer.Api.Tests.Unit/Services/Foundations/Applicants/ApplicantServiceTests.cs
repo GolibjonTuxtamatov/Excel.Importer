@@ -34,6 +34,8 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
         private static Applicant CreateRandomApplicant() =>
             CreateApplicantFiller().Create();
 
+        private static string GetRandomString() =>
+            new MnemonicString().GetValue();
         private static SqlException GetSqlError() =>
             (SqlException)FormatterServices.GetUninitializedObject(typeof(SqlException));
 
