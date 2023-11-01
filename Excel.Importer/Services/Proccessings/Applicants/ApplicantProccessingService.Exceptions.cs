@@ -3,11 +3,9 @@
 // Powering True Leadership
 //===========================
 
-using System;
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.Applicants.Exceptions;
-using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Excel.Importer.Services.Proccessings.Groups.Exceptions;
 using Xeptions;
 
@@ -34,6 +32,10 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             catch (ApplicantDependencyValidationExcpetion applicantDependencyValidationException)
             {
                 throw CreateAndLogProccessingDependencyValidationException(applicantDependencyValidationException);
+            }
+            catch (ApplicantServiceException groupServiceException)
+            {
+                throw CreateAndLogProccessingServiceException(groupServiceException);
             }
         }
 
@@ -65,6 +67,16 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             this.loggingBroker.LogError(applicantProccessingDependencyValidationException);
 
             return applicantProccessingDependencyValidationException;
+        }
+
+        private ApplicantProccessingServiceException CreateAndLogProccessingServiceException(Xeption exception)
+        {
+            var applicantProccessingServiceException =
+                new ApplicantProccessingServiceException(exception.InnerException as Xeption);
+
+            this.loggingBroker.LogError(applicantProccessingServiceException);
+
+            return applicantProccessingServiceException;
         }
     }
 }
