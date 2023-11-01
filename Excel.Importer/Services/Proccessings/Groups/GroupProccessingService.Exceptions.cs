@@ -5,6 +5,7 @@
 
 using System.Linq;
 using System.Threading.Tasks;
+using Excel.Importer.Models.Foundations.Applicants.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Foundations.Groups.Exceptions;
 using Excel.Importer.Services.Proccessings.Groups.Exceptions;
@@ -67,10 +68,10 @@ namespace Excel.Importer.Services.Proccessings.Groups
             return groupProccessingValidationException;
         }
 
-        private GroupProccessingDepedencyException CreateAndLogProccessingDependencyException(Xeption exception)
+        private ApplicantProccessingDependencyException CreateAndLogProccessingDependencyException(Xeption exception)
         {
             var groupProccessingDepedencyException =
-                new GroupProccessingDepedencyException(exception.InnerException as Xeption);
+                new ApplicantProccessingDependencyException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogCritical(groupProccessingDepedencyException);
 

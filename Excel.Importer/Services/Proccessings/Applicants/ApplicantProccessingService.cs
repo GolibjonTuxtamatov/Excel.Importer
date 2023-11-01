@@ -4,23 +4,26 @@
 //===========================
 
 using System.Threading.Tasks;
+using Excel.Importer.Brokers.Loggings;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Services.Foundations.Applicants;
 
 namespace Excel.Importer.Services.Proccessings.Applicants
 {
-    public class ApplicantProccessingService : IApplicantProccessingService
+    public partial class ApplicantProccessingService : IApplicantProccessingService
     {
         private readonly IApplicantService applicantService;
-
-        public ApplicantProccessingService(IApplicantService applicantService)
+        private readonly ILoggingBroker loggingBroker;
+        public ApplicantProccessingService(IApplicantService applicantService, ILoggingBroker loggingBroker)
         {
             this.applicantService = applicantService;
+            this.loggingBroker = loggingBroker;
         }
 
-        public ValueTask<Applicant> AddApplicantAsync(Applicant applicant)
+        public ValueTask<Applicant> AddApplicantAsync(Applicant applicant) =>
+            TryCatch(async () =>
         {
-            return this.applicantService.AddApplicantAsync(applicant);
-        }
+            return await this.applicantService.AddApplicantAsync(applicant);
+        });
     }
 }
