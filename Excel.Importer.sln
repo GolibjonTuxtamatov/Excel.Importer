@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excel.Importer.Api.Infrastr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Excel.Importer.Api.Tests.Unit", "Excel.Importer.Api.Tests.Unit\Excel.Importer.Api.Tests.Unit.csproj", "{3551A3B4-DE2E-48FF-AA34-600711177A90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Excel.Importer.Web", "Excel.Importer.Web\Excel.Importer.Web.csproj", "{8F33D2D6-7DD6-4EDB-AF20-4F430764C51B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{3551A3B4-DE2E-48FF-AA34-600711177A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3551A3B4-DE2E-48FF-AA34-600711177A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3551A3B4-DE2E-48FF-AA34-600711177A90}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8F33D2D6-7DD6-4EDB-AF20-4F430764C51B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8F33D2D6-7DD6-4EDB-AF20-4F430764C51B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8F33D2D6-7DD6-4EDB-AF20-4F430764C51B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8F33D2D6-7DD6-4EDB-AF20-4F430764C51B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
