@@ -38,7 +38,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
                 addApplicantTask.AsTask());
 
             this.storageBrokerMock.Verify(broker =>
-                broker.InsertApplicantAsync(someApplicant), 
+                broker.InsertApplicantAsync(someApplicant),
                     Times.Once());
 
             this.loggingBrokerMock.Verify(broker =>
@@ -57,13 +57,13 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
             Applicant someApplicant = CreateRandomApplicant();
             string someMessage = GetRandomString();
 
-            DuplicateKeyException duplicateKeyException = 
+            DuplicateKeyException duplicateKeyException =
                 new DuplicateKeyException(someMessage);
 
-            var alreadyExistApplicantException = 
+            var alreadyExistApplicantException =
                 new AlreadyExistApplicantException(duplicateKeyException);
 
-            var expectedApplicantDependencyValidationExcpetion = 
+            var expectedApplicantDependencyValidationExcpetion =
                 new ApplicantDependencyValidationExcpetion(alreadyExistApplicantException);
 
             this.storageBrokerMock.Setup(broker =>
@@ -71,7 +71,7 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
                 .ThrowsAsync(duplicateKeyException);
 
             //when
-            ValueTask<Applicant> addApplicantTask = 
+            ValueTask<Applicant> addApplicantTask =
                 this.applicantService.AddApplicantAsync(someApplicant);
 
             //then
@@ -96,10 +96,10 @@ namespace Excel.Importer.Api.Tests.Unit.Services.Foundations.Applicants
             Applicant someApplicant = CreateRandomApplicant();
             var serviceException = new Exception();
 
-            var failedApplicantServiceException = 
+            var failedApplicantServiceException =
                 new FailedApplicantServiceException(serviceException);
 
-            var expectedApplicantServiceException = 
+            var expectedApplicantServiceException =
                 new ApplicantServiceException(failedApplicantServiceException);
 
             this.storageBrokerMock.Setup(broker =>

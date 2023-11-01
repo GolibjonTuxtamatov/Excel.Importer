@@ -7,9 +7,9 @@ using Xeptions;
 
 namespace Excel.Importer.Services.Proccessings.Groups.Exceptions
 {
-    public class ApplicantProccessingDepedencyException : Xeption
+    public class GroupProccessingDepedencyException : Xeption
     {
-        public ApplicantProccessingDepedencyException(Xeption innerException)
+        public GroupProccessingDepedencyException(Xeption innerException)
             : base("Group proccessing dependency error occured, fix the error try again",
                  innerException)
         { }

@@ -6,7 +6,6 @@
 using System.Threading.Tasks;
 using Excel.Importer.Models.Foundations.Applicants;
 using Excel.Importer.Models.Foundations.Applicants.Exceptions;
-using Excel.Importer.Services.Proccessings.Groups.Exceptions;
 using Xeptions;
 
 namespace Excel.Importer.Services.Proccessings.Applicants
@@ -21,7 +20,7 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             {
                 return await returningApplicantFunction();
             }
-            catch(ApplicantValidationException applicantValidationException)
+            catch (ApplicantValidationException applicantValidationException)
             {
                 throw CreateAndLogProccessingValidationException(applicantValidationException);
             }

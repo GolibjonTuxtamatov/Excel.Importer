@@ -12,6 +12,6 @@ namespace Excel.Importer.Models.Foundations.Applicants.Exceptions
         public ApplicantProccessingDependencyException(Xeption innerException)
             : base(message: "Applicant proccessing dependency error occured, fix the error try again",
                   innerException)
-        {}
+        { }
     }
 }

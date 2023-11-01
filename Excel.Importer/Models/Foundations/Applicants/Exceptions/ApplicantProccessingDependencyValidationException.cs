@@ -12,6 +12,6 @@ namespace Excel.Importer.Models.Foundations.Applicants.Exceptions
         public ApplicantProccessingDependencyValidationException(Xeption innerException)
             : base(message: "Applicant proccessing dependency validation error occured, contact support",
                   innerException)
-        {}
+        { }
     }
 }
