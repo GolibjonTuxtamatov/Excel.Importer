@@ -48,10 +48,10 @@ namespace Excel.Importer.Services.Proccessings.Applicants
             return applicantProccessingValidationException;
         }
 
-        private ApplicantProccessingDepedencyException CreateAndLogProccessingDependencyException(Xeption exception)
+        private ApplicantProccessingDependencyException CreateAndLogProccessingDependencyException(Xeption exception)
         {
             var applicantProccessingDepedencyException =
-                new ApplicantProccessingDepedencyException(exception.InnerException as Xeption);
+                new ApplicantProccessingDependencyException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogCritical(applicantProccessingDepedencyException);
 
