@@ -22,7 +22,7 @@ namespace Excel.Importer.Brokers.Spreadsheets
 
             ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[0];
 
-            for (int row = 2; row < worksheet.Dimension.Rows; row++)
+            for (int row = 2; row < worksheet.Dimension.Rows+1; row++)
             {
                 externalApplicants.Add(
                     new ExternalApplicant
