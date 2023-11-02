@@ -24,16 +24,16 @@ namespace Excel.Importer.Services.Orchestrations.Applicants
             {
                 throw CreateAndLogOrchetrationValidationException(applicantProccessingValidationException);
             }
-            catch(ApplicantProccessingDependencyException applicantProccessingDependencyException)
+            catch (ApplicantProccessingDependencyException applicantProccessingDependencyException)
             {
                 throw CreateAndLogOrchetrationDependencyException(applicantProccessingDependencyException);
             }
-            catch(ApplicantProccessingDependencyValidationException applicantProccessingDependencyValidationException)
+            catch (ApplicantProccessingDependencyValidationException applicantProccessingDependencyValidationException)
             {
                 throw CreateAndLogOrchetrationDependencyValidationException(
                     applicantProccessingDependencyValidationException);
             }
-            catch(ApplicantProccessingServiceException applicantProccessingServiceException)
+            catch (ApplicantProccessingServiceException applicantProccessingServiceException)
             {
                 throw CreateAndLogOrchetrationServiceException(applicantProccessingServiceException);
             }
@@ -51,7 +51,7 @@ namespace Excel.Importer.Services.Orchestrations.Applicants
 
         private ApplicantOrchestrationDependencyException CreateAndLogOrchetrationDependencyException(Xeption exception)
         {
-            var applicantOrchestrationDependencyException = 
+            var applicantOrchestrationDependencyException =
                 new ApplicantOrchestrationDependencyException(exception.InnerException as Xeption);
 
             this.loggingBroker.LogError(applicantOrchestrationDependencyException);
@@ -74,8 +74,8 @@ namespace Excel.Importer.Services.Orchestrations.Applicants
             var applicantOrchestrationServiceException =
                 new ApplicantOrchestrationServiceException(exception.InnerException as Xeption);
 
-            this.loggingBroker.LogError(applicantOrchestrationServiceException); 
-            
+            this.loggingBroker.LogError(applicantOrchestrationServiceException);
+
             return applicantOrchestrationServiceException;
         }
     }

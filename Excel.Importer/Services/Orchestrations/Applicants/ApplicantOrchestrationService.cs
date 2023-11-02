@@ -15,7 +15,9 @@ namespace Excel.Importer.Services.Orchestrations.Applicants
         private readonly IApplicantProccessingService applicantProccessingService;
         private readonly ILoggingBroker loggingBroker;
 
-        public ApplicantOrchestrationService(IApplicantProccessingService applicantProccessingService, ILoggingBroker loggingBroker)
+        public ApplicantOrchestrationService(
+            IApplicantProccessingService applicantProccessingService,
+            ILoggingBroker loggingBroker)
         {
             this.applicantProccessingService = applicantProccessingService;
             this.loggingBroker = loggingBroker;

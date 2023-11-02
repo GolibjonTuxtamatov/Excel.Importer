@@ -12,6 +12,6 @@ namespace Excel.Importer.Models.Foundations.Applicants.Exceptions
         public ApplicantOrchetrationDependencyValidationException(Xeption innerException)
             : base(message: "Applicant orchestration dependency validation error occured, fix the error and try again",
                   innerException)
-        {}
+        { }
     }
 }

@@ -12,6 +12,6 @@ namespace Excel.Importer.Models.Foundations.Applicants.Exceptions
         public ApplicantOrchestrationDependencyException(Xeption innerException)
             : base(message: "Applicant orchestration dependency error occured, contact support",
                   innerException)
-        {}
+        { }
     }
 }
