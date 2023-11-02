@@ -5,7 +5,6 @@
 
 using System.Linq;
 using System.Threading.Tasks;
-using Excel.Importer.Models.Foundations.Applicants.Exceptions;
 using Excel.Importer.Models.Foundations.Groups;
 using Excel.Importer.Services.Orchestrations.Groups.Exceptions;
 using Excel.Importer.Services.Proccessings.Groups.Exceptions;
@@ -28,7 +27,7 @@ namespace Excel.Importer.Services.Orchestrations.Groups
             {
                 throw CreateAndLogOrchetrationValidationException(groupProccessingValidationException);
             }
-            catch (ApplicantProccessingDependencyException groupProccessingDependencyException)
+            catch (GroupProccessingDepedencyException groupProccessingDependencyException)
             {
                 throw CreateAndLogOrchetrationDependencyException(groupProccessingDependencyException);
             }
