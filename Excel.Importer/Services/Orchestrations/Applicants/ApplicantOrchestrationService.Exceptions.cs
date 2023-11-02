@@ -29,6 +29,11 @@ namespace Excel.Importer.Services.Orchestrations.Applicants
             {
                 throw CreateAndLogOrchetrationDependencyException(applicantProccessingDependencyException);
             }
+            catch(ApplicantProccessingDependencyValidationException applicantProccessingDependencyValidationException)
+            {
+                throw CreateAndLogOrchetrationDependencyValidationException(
+                    applicantProccessingDependencyValidationException);
+            }
         }
 
         private ApplicantOrchestrationValidationException CreateAndLogOrchetrationValidationException(Xeption exception)
@@ -43,12 +48,22 @@ namespace Excel.Importer.Services.Orchestrations.Applicants
 
         private ApplicantOrchestrationDependencyException CreateAndLogOrchetrationDependencyException(Xeption exception)
         {
-            var applicantProccessingDependencyException = 
+            var applicantOrchestrationDependencyException = 
                 new ApplicantOrchestrationDependencyException(exception.InnerException as Xeption);
 
-            this.loggingBroker.LogError(applicantProccessingDependencyException);
+            this.loggingBroker.LogError(applicantOrchestrationDependencyException);
 
-            return applicantProccessingDependencyException;
+            return applicantOrchestrationDependencyException;
+        }
+
+        private ApplicantOrchetrationDependencyValidationException CreateAndLogOrchetrationDependencyValidationException(Xeption exception)
+        {
+            var applicantOrchetrationDependencyValidationException =
+                new ApplicantOrchetrationDependencyValidationException(exception.InnerException as Xeption);
+
+            this.loggingBroker.LogError(applicantOrchetrationDependencyValidationException);
+
+            return applicantOrchetrationDependencyValidationException;
         }
     }
 }
